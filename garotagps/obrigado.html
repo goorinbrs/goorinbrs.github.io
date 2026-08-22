@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Recebido - Garota GPS</title>
+    <style>
+        :root { --bg-claro: #f8fcfb; --texto-principal: #2d3748; --verde-menta: #a8e6cf; --azul-ciano: #00e5ff; --branco: #ffffff; --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.05); }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-claro); color: var(--texto-principal); line-height: 1.6; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        nav { background: var(--branco); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        nav a { text-decoration: none; color: var(--texto-principal); font-weight: bold; margin-left: 20px; }
+        nav a:hover { color: var(--azul-ciano); }
+        .hero { text-align: center; padding: 80px 20px 40px; }
+        .check-circle { width: 90px; height: 90px; margin: 0 auto 30px; border-radius: 50%; background: var(--verde-menta); display: flex; align-items: center; justify-content: center; font-size: 3rem; animation: pop 0.5s ease; }
+        @keyframes pop { 0% { transform: scale(0); } 70% { transform: scale(1.15); } 100% { transform: scale(1); } }
+        h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        .card { background: var(--branco); border-radius: 20px; padding: 40px; box-shadow: var(--sombra-suave); margin: 30px auto; text-align: left; }
+        .card h3 { margin-top: 0; color: #00a3b8; }
+        .card ol { padding-left: 20px; }
+        .card ol li { margin-bottom: 12px; }
+        .btn { display: inline-block; background: var(--texto-principal); color: var(--branco); padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: all 0.3s; margin-top: 10px; }
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
+        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #718096; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <div style="font-weight: 900; font-size: 1.2rem; letter-spacing: 1px;">GAROTA GPS</div>
+            <div>
+                <a href="index.html">Início</a>
+                <a href="vendas.html">Planos</a>
+                <a href="documentario.html">Documentário</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero container">
+        <div class="check-circle">✓</div>
+        <h1>Recebemos seu pagamento!</h1>
+        <p style="font-size: 1.2rem;">Bem-vindo à família Garota GPS. Sua licença está sendo preparada.</p>
+    </header>
+
+    <section class="container">
+        <div class="card">
+            <h3>Próximos passos</h3>
+            <ol>
+                <li><strong>Baixe o instalador</strong> mais recente do Garota GPS.</li>
+                <li><strong>Instale e abra</strong> o aplicativo no seu computador.</li>
+                <li>Sua <strong>licença será ativada</strong> conforme o plano contratado — o comprovante chega no e-mail cadastrado no Mercado Pago.</li>
+                <li>Dúvidas na ativação? Fale com a gente pelo e-mail do comprovante que respondemos rapidinho.</li>
+            </ol>
+            <p style="margin-bottom: 0;"><strong>Pagamento em análise?</strong> Pagamentos via Pix ou boleto podem levar alguns minutos (Pix) ou até 2 dias úteis (boleto) para serem confirmados. Assim que aprovarem, sua licença vale desde já.</p>
+        </div>
+        <div style="text-align: center;">
+            <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest" class="btn">BAIXAR INSTALADOR</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            Criado por Rodrigo ASGomes (Steam: GorinBRS) | Garota GPS &copy; 2024
+        </div>
+    </footer>
+
+</body>
+</html>
