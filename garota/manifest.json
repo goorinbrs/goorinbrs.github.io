@@ -1,15 +1,15 @@
 {
   "product": "GAROTA GPS",
-  "version": "0.94.5",
-  "displayVersion": "0.94.5 - Atualizacao nivel 2",
-  "level": 2,
-  "package": "GAROTA-GPS-0.94.5-win-x64.zip",
-  "sha256": "27417B774052658EB03D9250A7009F0CD481FD533D80B47EBAAC29077504F6AF",
-  "publishedAt": "2026-08-20T14:10:00-03:00",
+  "version": "0.94.6",
+  "displayVersion": "0.94.6 - Correcao vital de ativacao",
+  "level": 3,
+  "package": "https://github.com/goorinbrs/GarotaUpdates-/releases/download/v0.94.6/GAROTA-GPS-0.94.6-win-x64.zip",
+  "sha256": "0846D4ED24EDA6E10B65E8FD40CB04992DC3667B61591872163D36893342EF95",
+  "publishedAt": "2026-08-22T09:34:53-03:00",
   "notes": [
-    "Roteamento imortalizado: update-source agora usa o espelho estavel no GitHub como fonte primaria - endereco fixo que nunca morre, independe de tunel ou dominio.",
-    "Atualizacao forcada permanente: ao abrir, o launcher instala automaticamente a ultima versao com tela de espera e barrinha de progresso, antes de liberar o uso.",
-    "Hotfix de roteamento: launchers existentes passam a buscar atualizacoes no espelho estavel automaticamente.",
-    "Nova apresentacao da Garota: identidade e roteiro de voz aprimorados para se apresentar quando perguntada."
+    "Correcao vital: a confirmacao remota de ativacao permanece protegida durante atualizacoes e reinicializacoes.",
+    "Tolerancia offline segura de ate 72 horas quando o servidor estiver temporariamente indisponivel.",
+    "Vencimento e revogacao continuam sendo respeitados.",
+    "Instalador manual 0.94.6 disponivel para clientes presos em versoes antigas."
   ]
 }
