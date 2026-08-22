@@ -1,42 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAROTA GPS — Downloads</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0a0a0a; color: #eaeaea; font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
-  .wrap { max-width: 640px; margin: 0 auto; padding: 64px 24px; }
-  h1 { font-size: 32px; color: #fff; margin-bottom: 8px; }
-  h1 span { color: #E10600; }
-  .sub { color: #888; margin-bottom: 40px; }
-  .ver { background: #141414; border: 1px solid #262626; border-radius: 12px; padding: 28px; }
-  .ver h2 { font-size: 18px; color: #fff; margin-bottom: 14px; }
-  .badge { display: inline-block; background: #E10600; color: #fff; font-size: 12px; font-weight: 700; border-radius: 20px; padding: 3px 12px; margin-left: 8px; vertical-align: middle; }
-  ul { list-style: none; margin: 16px 0 26px; }
-  li { color: #999; font-size: 14px; line-height: 1.7; padding-left: 18px; position: relative; }
-  li::before { content: "▸"; color: #E10600; position: absolute; left: 0; }
-  a.btn { display: inline-block; background: #E10600; color: #fff; text-decoration: none; font-weight: 600; padding: 12px 26px; border-radius: 8px; font-size: 15px; }
-  a.btn:hover { background: #c00500; }
-  .meta { color: #666; font-size: 12px; margin-top: 18px; word-break: break-all; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garota GPS - A Alma do Seu Caminhão</title>
+    <style>
+        :root {
+            --bg-claro: #f8fcfb;
+            --texto-principal: #2d3748;
+            --verde-menta: #a8e6cf;
+            --azul-ciano: #00e5ff;
+            --dourado-selo: #ffd700;
+            --branco: #ffffff;
+            --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --borda-raio: 20px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-claro);
+            color: var(--texto-principal);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        
+        nav { background: var(--branco); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        nav a { text-decoration: none; color: var(--texto-principal); font-weight: bold; margin-left: 20px; }
+        nav a:hover { color: var(--azul-ciano); }
+
+        .hero { text-align: center; padding: 80px 20px; background: linear-gradient(to bottom, var(--branco), var(--bg-claro)); }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .selo-gratis { display: inline-block; background-color: var(--dourado-selo); color: #000; padding: 12px 25px; font-weight: bold; border-radius: 30px; margin-top: 20px; font-size: 1.1rem; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .selo-gratis:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5); }
+
+        .manifesto { display: flex; align-items: center; gap: 40px; margin: 60px 0; }
+        .manifesto-texto { flex: 1; font-size: 1.1rem; }
+        .manifesto-texto blockquote { font-style: italic; border-left: 4px solid var(--azul-ciano); padding-left: 20px; margin: 0; }
+        .manifesto-img { flex: 1; text-align: center; }
+        .manifesto-img img { max-width: 100%; border-radius: var(--borda-raio); }
+
+        .recursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { background: var(--branco); border-radius: var(--borda-raio); padding: 30px; box-shadow: var(--sombra-suave); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 229, 255, 0.15); }
+        .card img { max-width: 100%; height: 250px; object-fit: contain; margin-bottom: 15px; }
+        .badge { background: #e2e8f0; color: #718096; font-size: 0.8rem; padding: 5px 10px; border-radius: 12px; font-weight: bold; position: absolute; top: 15px; right: 15px; }
+
+        .cta-final { text-align: center; padding: 80px 20px; }
+        .btn-principal { display: inline-block; background-color: var(--azul-ciano); color: #000; font-size: 1.2rem; font-weight: bold; padding: 18px 45px; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4); transition: all 0.3s ease; }
+        .btn-principal:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0, 229, 255, 0.6); }
+
+        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #718096; }
+
+        @media (max-width: 768px) { .manifesto { flex-direction: column; text-align: center; } .manifesto-texto blockquote { border-left: none; padding: 0; } }
+    </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>GAROTA <span>GPS</span></h1>
-  <div class="sub">Espelho oficial de atualizações — digitalmod.com.br</div>
-  <div class="ver">
-    <h2>Versão 0.94.5 <span class="badge">NÍVEL 2</span></h2>
-    <ul>
-      <li>Roteamento imortalizado: espelho estável como fonte primária de atualização</li>
-      <li>Atualização forçada permanente com splash e barra de progresso</li>
-      <li>Hotfix de roteamento para launchers existentes</li>
-      <li>Nova apresentação da Garota</li>
-    </ul>
-    <a class="btn" href="/garota/GAROTA-GPS-0.94.5-win-x64.zip">Baixar GAROTA-GPS 0.94.5</a>
-    <div class="meta">manifest: /garota/manifest.json &bull; sha256: 27417B77...04F6AF</div>
-  </div>
-</div>
+
+    <nav>
+        <div class="container">
+            <div style="font-weight: 900; font-size: 1.2rem; letter-spacing: 1px;">GAROTA GPS</div>
+            <div>
+                <a href="index.html">Início</a>
+                <a href="vendas.html">Planos</a>
+                <a href="documentario.html">Documentário</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Ela é muito além de um guia de estrada 🛣️</h1>
+            <p>Sua assistente inteligente de cabine para ETS2 e ATS. A companhia definitiva para suas viagens.</p>
+                <a class="selo-gratis" href="GAROTA-GPS-0.94.5-win-x64.zip">🎁 Baixar GAROTA GPS 0.94.5</a>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="manifesto">
+            <div class="manifesto-texto">
+                <h2>Uma Carta Aberta 📜</h2>
+                <blockquote>
+                    <p>"Olá, motorista. Precisamos de você."</p>
+                    <p>"A Garota GPS não é apenas um GPS inteligente. Ela é a ALMA do seu caminhão falando com você enquanto vocês vivem aventuras na estrada."</p>
+                    <p>"Na versão de lançamento, os preços já não serão mais os mesmos. Esse preço é a sua forma de entrar na história da Garota GPS antes de todo mundo."</p>
+                </blockquote>
+            </div>
+            <div class="manifesto-img">
+                <img src="Garota-Original-Fisica-Matriz-Corrigida.png" alt="Garota GPS Física">
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 style="text-align: center;">O Pacote Completo (Sem Módulos) 🚛</h2>
+        <div class="recursos-grid">
+            <div class="card">
+                <img src="Garota-Casual-Corrigida.png" alt="Voz Natural">
+                <h3>Companhia de Verdade 🗣️</h3>
+                <p>Seu caminhão agora tem vida. Ela conhece sua rota, carga e fluidos. Conversa natural com sotaques brasileiros (baiano, gaúcho, carioca, paulista, mineiro).</p>
+            </div>
+            <div class="card">
+                <h3>Sincronia Total (SDK SCS) ⚙️</h3>
+                <p>Controle faróis, motor, limpadores, buzina, pisca-alerta e muito mais com a sua voz. Confirmação instantânea e real dentro do jogo.</p>
+            </div>
+            <div class="card">
+                <img src="Garota-Referencia-Facial-Holograma.png" alt="Holograma">
+                <h3>Holograma Reativo 🛜</h3>
+                <p>Uma projeção elegante na cabine cujas cores mudam conforme a sua atenção, o estresse ou perigos na estrada confirmados pela telemetria.</p>
+            </div>
+            <div class="card">
+                <span class="badge">⏳ EM BREVE</span>
+                <h3>Garota GOLIVE 📡</h3>
+                <p>Lê o chat e apoios do YouTube/Twitch. A sua audiência interage com a cabine, mas você nunca perde o controle da direção.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final">
+        <div class="container">
+            <h2>Pronto para assumir a direção?</h2>
+            <br>
+            <a href="vendas.html" class="btn-principal">Ver Planos e Garantir Acesso ➔</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            Criado por Rodrigo ASGomes (Steam: GorinBRS) | Garota GPS &copy; 2024
+        </div>
+    </footer>
+
 </body>
 </html>
