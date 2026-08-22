@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garante seu Acesso - Garota GPS</title>
+    <style>
+        /* Mesmas variáveis do index */
+        :root { --bg-claro: #f8fcfb; --texto-principal: #2d3748; --verde-menta: #a8e6cf; --azul-ciano: #00e5ff; --dourado-selo: #ffd700; --branco: #ffffff; --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.05); --borda-raio: 20px; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-claro); color: var(--texto-principal); line-height: 1.6; margin: 0; padding: 0; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        nav { background: var(--branco); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        nav a { text-decoration: none; color: var(--texto-principal); font-weight: bold; margin-left: 20px; }
+        nav a:hover { color: var(--azul-ciano); }
+
+        .hero-vendas { text-align: center; padding: 60px 20px; }
+        .selo-urgencia { display: inline-block; background-color: #ff4757; color: white; padding: 10px 20px; border-radius: 30px; font-weight: bold; letter-spacing: 1px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        .planos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; }
+        .plano-card { background: var(--branco); border-radius: var(--borda-raio); padding: 40px 30px; text-align: center; box-shadow: var(--sombra-suave); position: relative; transition: transform 0.3s ease; border: 2px solid transparent; }
+        .plano-card:hover { transform: translateY(-10px); border-color: var(--azul-ciano); }
+        .plano-destaque { border-color: var(--dourado-selo); box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2); }
+        .badge-destaque { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--dourado-selo); color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+        
+        .preco-antigo { text-decoration: line-through; color: #a0aec0; font-size: 1.2rem; }
+        .preco-atual { font-size: 3rem; font-weight: bold; color: var(--texto-principal); margin: 10px 0; }
+        .preco-atual span { font-size: 1.2rem; }
+        
+        .lista-recursos { list-style: none; padding: 0; margin: 30px 0; text-align: left; }
+        .lista-recursos li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        .lista-recursos li::before { content: "✓"; color: var(--azul-ciano); font-weight: bold; position: absolute; left: 0; font-size: 1.2rem; }
+
+        .btn-comprar { display: block; width: 100%; background: var(--texto-principal); color: var(--branco); padding: 15px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: all 0.3s; }
+        .plano-destaque .btn-comprar { background: var(--azul-ciano); color: #000; }
+        .btn-comprar:hover { opacity: 0.9; transform: scale(1.02); }
+
+        .pagamentos { text-align: center; margin-top: 20px; color: #718096; font-size: 0.9rem; }
+        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #718096; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <div style="font-weight: 900; font-size: 1.2rem; letter-spacing: 1px;">GAROTA GPS</div>
+            <div>
+                <a href="index.html">Início</a>
+                <a href="vendas.html">Planos</a>
+                <a href="documentario.html">Documentário</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-vendas container">
+        <div class="selo-urgencia">ACESSO ANTECIPADO — APENAS 50 VAGAS</div>
+        <h1 style="font-size: 2.5rem; margin-top: 20px;">O Produto é Único. A Escolha do Tempo é Sua.</h1>
+        <p style="font-size: 1.2rem;">Todos os recursos. Todos os sotaques. Sem módulos escondidos.<br>Comece qualquer plano hoje com <strong>7 DIAS GRÁTIS</strong> (sem cartão, sem compromisso).</p>
+    </header>
+
+    <section class="container">
+        <div class="planos-grid">
+            <!-- Plano Mensal -->
+            <div class="plano-card">
+                <h3>Mensal</h3>
+                <div class="preco-antigo">R$ 35</div>
+                <div class="preco-atual">R$ 25<span>/30 dias</span></div>
+                <p>Economia de 28%</p>
+                <ul class="lista-recursos">
+                    <li>Controle por voz no ETS2/ATS</li>
+                    <li>Telemetria e Holograma Reativo</li>
+                    <li>Todos os sotaques brasileiros</li>
+                    <li>Instalador único e atualizações</li>
+                </ul>
+                <a href="/garota/GAROTA-GPS-0.94.5-win-x64.zip" class="btn-comprar">Baixar GAROTA GPS 0.94.5</a>
+            </div>
+
+            <!-- Plano Anual (Destaque) -->
+            <div class="plano-card plano-destaque">
+                <div class="badge-destaque">MELHOR ESCOLHA (-70%)</div>
+                <h3>Anual</h3>
+                <div class="preco-antigo">R$ 420</div>
+                <div class="preco-atual">R$ 126<span>/365 dias</span></div>
+                <p>Garota Rodada: Badges de Fundador</p>
+                <ul class="lista-recursos">
+                    <li>Controle por voz no ETS2/ATS</li>
+                    <li>Telemetria e Holograma Reativo</li>
+                    <li>Todos os sotaques brasileiros</li>
+                    <li>Instalador único e atualizações</li>
+                </ul>
+                <a href="/garota/GAROTA-GPS-0.94.5-win-x64.zip" class="btn-comprar">Baixar GAROTA GPS 0.94.5</a>
+            </div>
+
+            <!-- Plano Trimestral -->
+            <div class="plano-card">
+                <h3>Trimestral</h3>
+                <div class="preco-antigo">R$ 105</div>
+                <div class="preco-atual">R$ 70<span>/90 dias</span></div>
+                <p>Economia de 33%</p>
+                <ul class="lista-recursos">
+                    <li>Controle por voz no ETS2/ATS</li>
+                    <li>Telemetria e Holograma Reativo</li>
+                    <li>Todos os sotaques brasileiros</li>
+                    <li>Instalador único e atualizações</li>
+                </ul>
+                <a href="/garota/GAROTA-GPS-0.94.5-win-x64.zip" class="btn-comprar">Baixar GAROTA GPS 0.94.5</a>
+            </div>
+        </div>
+
+        <div class="pagamentos">
+            Pagamento 100% seguro via: <strong>Mercado Pago • PayPal • Pix</strong>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            Transparência: Você usa sua própria chave Gemini. Sem internet, ela permanece silenciosa.<br>
+            Criado por Rodrigo ASGomes (Steam: GorinBRS) | Garota GPS &copy; 2024
+        </div>
+    </footer>
+
+</body>
+</html>
