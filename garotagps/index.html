@@ -43,6 +43,20 @@
         .manifesto-img { flex: 1; text-align: center; }
         .manifesto-img img { max-width: 100%; border-radius: var(--borda-raio); }
 
+        .suporte-jogos { margin: 20px auto 70px; text-align: center; }
+        .suporte-jogos h2 { margin-bottom: 8px; }
+        .suporte-jogos > p { margin-top: 0; color: #718096; }
+        .jogos-suportados { display: flex; justify-content: center; align-items: stretch; gap: 24px; margin-top: 28px; }
+        .jogo-suportado { width: min(420px, 45%); min-height: 210px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px; background: var(--branco); border: 1px solid rgba(45, 55, 72, 0.08); border-radius: var(--borda-raio); box-shadow: var(--sombra-suave); }
+        .jogo-suportado img { display: block; width: 100%; max-width: 320px; height: 130px; object-fit: contain; }
+        .jogo-status { margin-top: 18px; padding: 6px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; }
+        .jogo-status.ativo { color: #067647; background: #d9fbe9; }
+        .jogo-status.andamento { color: #7a5d00; background: #fff3bf; }
+        .logo-progresso { position: relative; width: 100%; max-width: 320px; height: 130px; }
+        .logo-progresso img { position: absolute; inset: 0; }
+        .logo-progresso .logo-escura { filter: grayscale(1) brightness(0.28); opacity: 0.72; }
+        .logo-progresso .logo-colorida { clip-path: inset(0 60% 0 0); }
+
         .recursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .card { background: var(--branco); border-radius: var(--borda-raio); padding: 30px; box-shadow: var(--sombra-suave); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 229, 255, 0.15); }
@@ -55,7 +69,7 @@
 
         footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #718096; }
 
-        @media (max-width: 768px) { .manifesto { flex-direction: column; text-align: center; } .manifesto-texto blockquote { border-left: none; padding: 0; } }
+        @media (max-width: 768px) { .manifesto { flex-direction: column; text-align: center; } .manifesto-texto blockquote { border-left: none; padding: 0; } .jogos-suportados { flex-direction: column; align-items: center; } .jogo-suportado { width: 100%; } }
     </style>
 </head>
 <body>
@@ -92,6 +106,24 @@
             <div class="manifesto-img">
                 <img src="Garota-Original-Fisica-Matriz-Corrigida.png" alt="Garota GPS Física">
             </div>
+        </div>
+    </section>
+
+    <section class="container suporte-jogos" aria-labelledby="titulo-suporte">
+        <h2 id="titulo-suporte">Suporte a:</h2>
+        <p>Integração desenvolvida especialmente para os simuladores da SCS Software.</p>
+        <div class="jogos-suportados">
+            <article class="jogo-suportado">
+                <img src="logo-ets2.png" alt="Euro Truck Simulator 2">
+                <span class="jogo-status ativo">SUPORTE ATIVO</span>
+            </article>
+            <article class="jogo-suportado">
+                <div class="logo-progresso" aria-label="American Truck Simulator, suporte em desenvolvimento">
+                    <img class="logo-escura" src="logo-ats.png" alt="">
+                    <img class="logo-colorida" src="logo-ats.png" alt="American Truck Simulator">
+                </div>
+                <span class="jogo-status andamento">40% EM DESENVOLVIMENTO</span>
+            </article>
         </div>
     </section>
 
