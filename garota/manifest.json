@@ -1,14 +1,14 @@
 {
   "product": "GAROTA GPS",
-  "version": "0.94.7",
-  "displayVersion": "0.94.7 - Apoio ao projeto atualizado",
+  "version": "0.94.8",
+  "displayVersion": "0.94.8 - Pagamentos via servidor VPS",
   "level": 1,
-  "package": "https://github.com/goorinbrs/GarotaUpdates-/releases/download/v0.94.7/GAROTA-GPS-0.94.7-win-x64.zip",
-  "sha256": "7CAA295E10B3298C2D0CF27C0F0A9BF77114A30EA449B7D58DB884718D346383",
-  "publishedAt": "2026-08-23T00:00:00-03:00",
+  "package": "https://github.com/goorinbrs/GarotaUpdates-/releases/download/v0.94.8/GAROTA-GPS-0.94.8-win-x64.zip",
+  "sha256": "DD0959C154380C6D657943597F5C59C2166A8CFB2AE79E95C52939046AEE014E",
+  "publishedAt": "2026-08-24T04:30:00-03:00",
   "notes": [
-    "Novo QR de apoio via Pix na aba Apoio de Projeto: agora aceita qualquer valor, sem valor fixo.",
-    "Apoio continua opcional - a Garota nao exige pagamento para existir.",
-    "PayPal mantido para doacoes internacionais."
+    "Servidor de pagamentos hospedado na VPS (164.163.10.163) com fallback de links do Mercado Pago.",
+    "Botao Comprar abre o checkout do Mercado Pago (mensal/trimestral/anual).",
+    "Update-source prioriza o servidor VPS para atualizacoes mais rapidas."
   ]
 }
