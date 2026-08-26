@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garota GPS - A Alma do Seu Caminhão</title>
+    <title>GAROTA MACHINE — A inteligência viva do seu caminhão</title>
+    <meta name="description" content="GAROTA MACHINE é a inteligência viva do seu caminhão: voz, telemetria, comandos e presença nativa na cabine do ETS2 e ATS.">
+    <meta property="og:title" content="GAROTA MACHINE">
+    <meta property="og:description" content="A inteligência viva do seu caminhão.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://digitalmod.com.br/garotagps/og.png">
     <style>
         :root {
-            --bg-claro: #f8fcfb;
-            --texto-principal: #2d3748;
-            --verde-menta: #a8e6cf;
+            --bg-claro: #05090f;
+            --texto-principal: #f2f7fa;
+            --verde-menta: #21e6b2;
             --azul-ciano: #00e5ff;
             --dourado-selo: #ffd700;
-            --branco: #ffffff;
-            --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --branco: #0d141d;
+            --sombra-suave: 0 16px 46px rgba(0, 0, 0, 0.34);
             --borda-raio: 20px;
         }
 
@@ -30,10 +35,10 @@
         nav { position: absolute; inset: 0 0 auto; z-index: 20; background: linear-gradient(180deg, rgba(2, 8, 18, 0.92), rgba(2, 8, 18, 0.38), transparent); padding: 18px 0 38px; }
         nav .container { display: flex; justify-content: space-between; align-items: center; }
         .marca { display: flex; align-items: center; gap: 11px; color: white; }
-        .marca-sinal { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid rgba(0, 229, 255, 0.52); border-radius: 13px; background: linear-gradient(145deg, rgba(0, 229, 255, 0.2), rgba(255, 44, 84, 0.2)); box-shadow: 0 0 24px rgba(0, 229, 255, 0.18); }
+        .marca-sinal { display: block; width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 0 16px rgba(0,229,255,.24)); }
         .marca-texto { line-height: 1; }
-        .marca-texto strong { display: block; font-size: 1.02rem; letter-spacing: 0.13em; }
-        .marca-texto small { color: #80dff0; font-size: 0.62rem; letter-spacing: 0.2em; }
+        .marca-texto img { display:block; width:220px; max-width:42vw; height:38px; object-fit:contain; object-position:left center; }
+        .marca-texto small { display:block; color: #80dff0; font-size: 0.56rem; letter-spacing: 0.2em; margin-top:-3px; }
         nav a { text-decoration: none; color: rgba(255,255,255,0.78); font-weight: 650; margin-left: 22px; font-size: 0.92rem; }
         nav a:hover { color: var(--azul-ciano); }
 
@@ -64,15 +69,15 @@
 
         .manifesto { display: flex; align-items: center; gap: 40px; margin: 60px 0; }
         .manifesto-texto { flex: 1; font-size: 1.1rem; }
-        .manifesto-texto blockquote { font-style: italic; border-left: 4px solid var(--azul-ciano); padding-left: 20px; margin: 0; }
+        .manifesto-texto blockquote { font-style: italic; border-left: 4px solid var(--azul-ciano); padding-left: 20px; margin: 0; color:#b8c9d5; }
         .manifesto-img { flex: 1; text-align: center; }
         .manifesto-img img { max-width: 100%; border-radius: var(--borda-raio); }
 
         .suporte-jogos { margin: 20px auto 70px; text-align: center; }
         .suporte-jogos h2 { margin-bottom: 8px; }
-        .suporte-jogos > p { margin-top: 0; color: #718096; }
+        .suporte-jogos > p { margin-top: 0; color: #8fa5b5; }
         .jogos-suportados { display: flex; justify-content: center; align-items: stretch; gap: 24px; margin-top: 28px; }
-        .jogo-suportado { width: min(420px, 45%); min-height: 210px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px; background: var(--branco); border: 1px solid rgba(45, 55, 72, 0.08); border-radius: var(--borda-raio); box-shadow: var(--sombra-suave); }
+        .jogo-suportado { width: min(420px, 45%); min-height: 210px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px; background: linear-gradient(145deg,#101a24,#0b1119); border: 1px solid #263746; border-radius: var(--borda-raio); box-shadow: var(--sombra-suave); }
         .jogo-suportado img { display: block; width: 100%; max-width: 320px; height: 130px; object-fit: contain; }
         .jogo-status { margin-top: 18px; padding: 6px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; }
         .jogo-status.ativo { color: #067647; background: #d9fbe9; }
@@ -83,7 +88,8 @@
         .logo-progresso .logo-colorida { clip-path: inset(0 60% 0 0); }
 
         .recursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card { background: var(--branco); border-radius: var(--borda-raio); padding: 30px; box-shadow: var(--sombra-suave); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
+        .card { background: linear-gradient(145deg,#101a24,#0b1119); border:1px solid #263746; border-radius: var(--borda-raio); padding: 30px; box-shadow: var(--sombra-suave); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
+        .card p { color:#9eb0bd; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 229, 255, 0.15); }
         .card img { max-width: 100%; height: 250px; object-fit: contain; margin-bottom: 15px; }
         .badge { background: #e2e8f0; color: #718096; font-size: 0.8rem; padding: 5px 10px; border-radius: 12px; font-weight: bold; position: absolute; top: 15px; right: 15px; }
@@ -92,7 +98,7 @@
         .btn-principal { display: inline-block; background-color: var(--azul-ciano); color: #000; font-size: 1.2rem; font-weight: bold; padding: 18px 45px; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4); transition: all 0.3s ease; }
         .btn-principal:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0, 229, 255, 0.6); }
 
-        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #718096; }
+        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #8fa5b5; border-top:1px solid #172430; }
 
         @media (max-width: 768px) { nav .container { align-items: flex-start; } nav .container > div:last-child { display: none; } .hero { min-height: 790px; background-position: 62% center; } .hero::before { background: linear-gradient(180deg, rgba(1,6,16,.88), rgba(1,7,17,.72) 50%, rgba(1,7,17,.94)); } .hero-grid { display: block; padding-top: 100px; } .hero-copy { position: relative; z-index: 5; padding: 45px 0 310px; } .hero h1 { font-size: clamp(2.8rem, 14vw, 4rem); } .hero-copy > p { font-size: .98rem; } .hero-dados { gap: 14px; flex-wrap: wrap; } .hero-visual { position: absolute; inset: auto 0 0; height: 420px; opacity: .68; } .hero-personagem { right: -22%; width: 470px; height: 430px; } .telemetria { display: none; } .manifesto { flex-direction: column; text-align: center; } .manifesto-texto blockquote { border-left: none; padding: 0; } .jogos-suportados { flex-direction: column; align-items: center; } .jogo-suportado { width: 100%; } }
     </style>
@@ -102,8 +108,8 @@
     <nav>
         <div class="container">
             <div class="marca">
-                <span class="marca-sinal">G</span>
-                <span class="marca-texto"><strong>GAROTA GPS</strong><small>COMPANHEIRA DE CABINE</small></span>
+                <img class="marca-sinal" src="garota-machine-mark.png" alt="">
+                <span class="marca-texto"><img src="garota-machine-wordmark.png" alt="GAROTA MACHINE"><small>A INTELIGÊNCIA VIVA DO SEU CAMINHÃO</small></span>
             </div>
             <div>
                 <a href="index.html">Início</a>
@@ -120,7 +126,7 @@
                 <h1>Ela vive a <span>cabine</span> com você.</h1>
                 <p>Sua assistente inteligente acompanha o caminhão, entende a viagem e transforma cada quilômetro em uma experiência mais humana.</p>
                 <div class="hero-acoes">
-                    <a class="selo-gratis" href="https://github.com/goorinbrs/GarotaUpdates-/releases/download/v0.94.6/Instalar-GAROTA-GPS-0.94.6.exe">Baixe o instalador e teste 7 dias grátis</a>
+                    <a class="selo-gratis" href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest">Baixe a versão mais recente</a>
                     <a class="hero-link" href="vendas.html">Conhecer os planos →</a>
                 </div>
                 <div class="hero-dados" aria-label="Destaques do produto">
@@ -142,12 +148,12 @@
                 <h2>Uma Carta Aberta 📜</h2>
                 <blockquote>
                     <p>"Olá, motorista. Precisamos de você."</p>
-                    <p>"A Garota GPS não é apenas um GPS inteligente. Ela é a ALMA do seu caminhão falando com você enquanto vocês vivem aventuras na estrada."</p>
-                    <p>"Na versão de lançamento, os preços já não serão mais os mesmos. Esse preço é a sua forma de entrar na história da Garota GPS antes de todo mundo."</p>
+                    <p>"A GAROTA MACHINE não é um navegador. Ela é a inteligência viva do seu caminhão, falando com você enquanto vocês constroem histórias na estrada."</p>
+                    <p>"Ela escuta, interpreta a máquina, reage à viagem e transforma a cabine em companhia de verdade."</p>
                 </blockquote>
             </div>
             <div class="manifesto-img">
-                <img src="Garota-Original-Fisica-Matriz-Corrigida.png" alt="Garota GPS Física">
+                <img src="Garota-Original-Fisica-Matriz-Corrigida.png" alt="Personagem da GAROTA MACHINE">
             </div>
         </div>
     </section>
@@ -210,7 +216,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="#00a650" xmlns="http://www.w3.org/2000/svg"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm3 8H9V6a3 3 0 0 1 6 0v3z"/></svg>
                 <span>Pagamentos processados pelo <strong>Mercado Pago</strong> — <strong>Compra Protegida</strong></span>
             </div>
-            Criado por Rodrigo ASGomes (Steam: GorinBRS) | Garota GPS &copy; 2026
+            Criado por Rodrigo ASGomes (Steam: GorinBRS) | GAROTA MACHINE &copy; 2026
         </div>
     </footer>
 

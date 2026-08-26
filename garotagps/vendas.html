@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garante seu Acesso - Garota GPS</title>
+    <title>Planos — GAROTA MACHINE</title>
     <style>
         /* Mesmas variáveis do index */
-        :root { --bg-claro: #f8fcfb; --texto-principal: #2d3748; --verde-menta: #a8e6cf; --azul-ciano: #00e5ff; --dourado-selo: #ffd700; --branco: #ffffff; --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.05); --borda-raio: 20px; }
+        :root { --bg-claro: #05090f; --texto-principal: #f2f7fa; --verde-menta: #21e6b2; --azul-ciano: #00d9ff; --dourado-selo: #ffb21c; --branco: #0d141d; --sombra-suave: 0 16px 46px rgba(0,0,0,.34); --borda-raio: 20px; }
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-claro); color: var(--texto-principal); line-height: 1.6; margin: 0; padding: 0; }
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        nav { background: var(--branco); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        nav { background: #070d14; padding: 15px 0; border-bottom:1px solid #263746; }
         nav .container { display: flex; justify-content: space-between; align-items: center; }
         nav a { text-decoration: none; color: var(--texto-principal); font-weight: bold; margin-left: 20px; }
         nav a:hover { color: var(--azul-ciano); }
@@ -19,13 +19,13 @@
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
         .planos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; }
-        .plano-card { background: var(--branco); border-radius: var(--borda-raio); padding: 40px 30px; text-align: center; box-shadow: var(--sombra-suave); position: relative; transition: transform 0.3s ease; border: 2px solid transparent; }
+        .plano-card { background: linear-gradient(145deg,#101a24,#0b1119); border-radius: var(--borda-raio); padding: 40px 30px; text-align: center; box-shadow: var(--sombra-suave); position: relative; transition: transform 0.3s ease; border: 2px solid #263746; }
         .plano-card:hover { transform: translateY(-10px); border-color: var(--azul-ciano); }
         .plano-destaque { border-color: var(--dourado-selo); box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2); }
         .badge-destaque { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--dourado-selo); color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
         
         .preco-antigo { text-decoration: line-through; color: #a0aec0; font-size: 1.2rem; }
-        .preco-atual { font-size: 3rem; font-weight: bold; color: var(--texto-principal); margin: 10px 0; }
+        .preco-atual { font-size: 3rem; font-weight: bold; color: #fff; margin: 10px 0; }
         .preco-atual span { font-size: 1.2rem; }
         
         .lista-recursos { list-style: none; padding: 0; margin: 30px 0; text-align: left; }
@@ -36,15 +36,16 @@
         .plano-destaque .btn-comprar { background: var(--azul-ciano); color: #000; }
         .btn-comprar:hover { opacity: 0.9; transform: scale(1.02); }
 
-        .pagamentos { text-align: center; margin-top: 20px; color: #718096; font-size: 0.9rem; }
-        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #718096; }
+        .pagamentos { text-align: center; margin-top: 20px; color: #8fa5b5; font-size: 0.9rem; }
+        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #8fa5b5; border-top:1px solid #172430; }
+        .wordmark { width:250px;max-width:46vw;height:46px;object-fit:contain;object-position:left center;display:block }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="container">
-            <div style="font-weight: 900; font-size: 1.2rem; letter-spacing: 1px;">GAROTA GPS</div>
+            <img class="wordmark" src="garota-machine-wordmark.png" alt="GAROTA MACHINE">
             <div>
                 <a href="index.html">Início</a>
                 <a href="vendas.html">Planos</a>
@@ -74,7 +75,7 @@
                     <li>Instalador único e atualizações</li>
                 </ul>
                 <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=1137559932-561ba1d4-4f70-41fb-97e4-9600ecb32fa2" class="btn-comprar">COMPRAR — 30 DIAS</a>
-                <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/download/v0.94.6/Instalar-GAROTA-GPS-0.94.6.exe" style="display:block; margin-top:15px; font-size:0.85rem; color:#718096;">Prefere testar primeiro? 7 dias grátis aqui</a>
+                <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest" style="display:block; margin-top:15px; font-size:0.85rem; color:#8fa5b5;">Baixe a versão mais recente</a>
             </div>
             <div class="plano-card plano-destaque">
                 <div class="badge-destaque">MELHOR ESCOLHA (-70%)</div>
@@ -89,7 +90,7 @@
                     <li>Instalador único e atualizações</li>
                 </ul>
                 <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=1137559932-2a5458bb-e547-41dc-8c48-74166855ebb9" class="btn-comprar">COMPRAR — 365 DIAS</a>
-                <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/download/v0.94.6/Instalar-GAROTA-GPS-0.94.6.exe" style="display:block; margin-top:15px; font-size:0.85rem; color:#718096;">Prefere testar primeiro? 7 dias grátis aqui</a>
+                <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest" style="display:block; margin-top:15px; font-size:0.85rem; color:#8fa5b5;">Baixe a versão mais recente</a>
             </div>
 
             <!-- Plano Trimestral -->
@@ -105,7 +106,7 @@
                     <li>Instalador único e atualizações</li>
                 </ul>
                 <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=1137559932-9fe2f301-8574-4725-a0ec-0648255b14bd" class="btn-comprar">COMPRAR — 90 DIAS</a>
-                <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/download/v0.94.6/Instalar-GAROTA-GPS-0.94.6.exe" style="display:block; margin-top:15px; font-size:0.85rem; color:#718096;">Prefere testar primeiro? 7 dias grátis aqui</a>
+                <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest" style="display:block; margin-top:15px; font-size:0.85rem; color:#8fa5b5;">Baixe a versão mais recente</a>
             </div>
         </div>
 
@@ -122,7 +123,7 @@
                 <span>Pagamentos processados pelo <strong>Mercado Pago</strong> — <strong>Compra Protegida</strong></span>
             </div>
             Transparência: Você usa sua própria chave Gemini. Sem internet, ela permanece silenciosa.<br>
-            Criado por Rodrigo ASGomes (Steam: GorinBRS) | Garota GPS &copy; 2026
+            Criado por Rodrigo ASGomes (Steam: GorinBRS) | GAROTA MACHINE &copy; 2026
         </div>
     </footer>
 
