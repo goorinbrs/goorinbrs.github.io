@@ -1,224 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAROTA MACHINE — A inteligência viva do seu caminhão</title>
-    <meta name="description" content="GAROTA MACHINE é a inteligência viva do seu caminhão: voz, telemetria, comandos e presença nativa na cabine do ETS2 e ATS.">
-    <meta property="og:title" content="GAROTA MACHINE">
-    <meta property="og:description" content="A inteligência viva do seu caminhão.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://digitalmod.com.br/garotagps/og.png">
-    <style>
-        :root {
-            --bg-claro: #05090f;
-            --texto-principal: #f2f7fa;
-            --verde-menta: #21e6b2;
-            --azul-ciano: #00e5ff;
-            --dourado-selo: #ffd700;
-            --branco: #0d141d;
-            --sombra-suave: 0 16px 46px rgba(0, 0, 0, 0.34);
-            --borda-raio: 20px;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-claro);
-            color: var(--texto-principal);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        
-        nav { position: absolute; inset: 0 0 auto; z-index: 20; background: linear-gradient(180deg, rgba(2, 8, 18, 0.92), rgba(2, 8, 18, 0.38), transparent); padding: 18px 0 38px; }
-        nav .container { display: flex; justify-content: space-between; align-items: center; }
-        .marca { display: flex; align-items: center; gap: 11px; color: white; }
-        .marca-sinal { display: block; width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 0 16px rgba(0,229,255,.24)); }
-        .marca-texto { line-height: 1; }
-        .marca-texto img { display:block; width:220px; max-width:42vw; height:38px; object-fit:contain; object-position:left center; }
-        .marca-texto small { display:block; color: #80dff0; font-size: 0.56rem; letter-spacing: 0.2em; margin-top:-3px; }
-        nav a { text-decoration: none; color: rgba(255,255,255,0.78); font-weight: 650; margin-left: 22px; font-size: 0.92rem; }
-        nav a:hover { color: var(--azul-ciano); }
-
-        .hero { position: relative; min-height: 720px; box-sizing: border-box; display: flex; align-items: center; overflow: hidden; isolation: isolate; color: white; background: #020812 url('hero-cabine-noturna-v1.png') center/cover no-repeat; }
-        .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(1, 5, 15, 0.97) 0%, rgba(1, 7, 18, 0.88) 35%, rgba(2, 10, 22, 0.28) 67%, rgba(2, 8, 16, 0.62) 100%); }
-        .hero::after { content: ""; position: absolute; inset: auto 0 0; height: 180px; z-index: 4; background: linear-gradient(transparent, var(--bg-claro)); pointer-events: none; }
-        .hero-grid { position: relative; z-index: 5; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr); align-items: center; width: 100%; padding-top: 92px; }
-        .hero-copy { max-width: 610px; padding: 68px 0 110px; }
-        .hero-eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px; border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 999px; color: #9deffc; background: rgba(2, 14, 28, 0.55); backdrop-filter: blur(10px); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.16em; }
-        .hero-eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #ff3158; box-shadow: 0 0 14px #ff3158; }
-        .hero h1 { max-width: 650px; margin: 22px 0 17px; font-size: clamp(3rem, 5.2vw, 5.65rem); line-height: 0.95; letter-spacing: -0.055em; text-wrap: balance; text-shadow: 0 8px 38px rgba(0,0,0,.55); }
-        .hero h1 span { color: transparent; background: linear-gradient(90deg, #fff, #8eeeff 65%, #46cde8); background-clip: text; -webkit-background-clip: text; }
-        .hero-copy > p { max-width: 560px; margin: 0; color: rgba(226, 239, 247, 0.79); font-size: 1.1rem; line-height: 1.75; }
-        .hero-acoes { display: flex; align-items: center; flex-wrap: wrap; gap: 13px; margin-top: 28px; }
-        .selo-gratis { display: inline-block; background: linear-gradient(135deg, #00e5ff, #68f1d1); color: #021017; padding: 14px 24px; font-weight: 900; border-radius: 12px; font-size: 0.96rem; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 10px 30px rgba(0, 229, 255, 0.22); }
-        .selo-gratis:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 229, 255, 0.38); }
-        .hero-link { color: white; text-decoration: none; padding: 13px 20px; border: 1px solid rgba(255,255,255,.2); border-radius: 12px; background: rgba(3, 12, 25, .42); backdrop-filter: blur(9px); font-weight: 700; }
-        .hero-dados { display: flex; gap: 28px; margin-top: 35px; }
-        .hero-dado { padding-left: 12px; border-left: 2px solid rgba(0,229,255,.42); }
-        .hero-dado strong { display: block; font-size: .9rem; }
-        .hero-dado span { color: #7995a5; font-size: .72rem; }
-        .hero-visual { position: relative; align-self: end; height: 615px; }
-        .hero-personagem { position: absolute; z-index: 2; right: -8%; bottom: 5px; width: min(510px, 46vw); max-height: 610px; object-fit: contain; object-position: bottom; filter: drop-shadow(0 0 30px rgba(0, 201, 255, .24)); }
-        .telemetria { position: absolute; z-index: 3; right: 0; top: 145px; width: 190px; padding: 14px 16px; border: 1px solid rgba(0, 229, 255, .22); border-radius: 13px; background: rgba(2, 13, 27, .54); box-shadow: 0 18px 55px rgba(0,0,0,.3); backdrop-filter: blur(12px); }
-        .telemetria small { display: block; color: #69dff0; letter-spacing: .14em; font-weight: 800; font-size: .58rem; }
-        .telemetria strong { display: block; margin-top: 6px; font-size: 1rem; }
-        .telemetria span { color: #8099a8; font-size: .72rem; }
-
-        .manifesto { display: flex; align-items: center; gap: 40px; margin: 60px 0; }
-        .manifesto-texto { flex: 1; font-size: 1.1rem; }
-        .manifesto-texto blockquote { font-style: italic; border-left: 4px solid var(--azul-ciano); padding-left: 20px; margin: 0; color:#b8c9d5; }
-        .manifesto-img { flex: 1; text-align: center; }
-        .manifesto-img img { max-width: 100%; border-radius: var(--borda-raio); }
-
-        .suporte-jogos { margin: 20px auto 70px; text-align: center; }
-        .suporte-jogos h2 { margin-bottom: 8px; }
-        .suporte-jogos > p { margin-top: 0; color: #8fa5b5; }
-        .jogos-suportados { display: flex; justify-content: center; align-items: stretch; gap: 24px; margin-top: 28px; }
-        .jogo-suportado { width: min(420px, 45%); min-height: 210px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px; background: linear-gradient(145deg,#101a24,#0b1119); border: 1px solid #263746; border-radius: var(--borda-raio); box-shadow: var(--sombra-suave); }
-        .jogo-suportado img { display: block; width: 100%; max-width: 320px; height: 130px; object-fit: contain; }
-        .jogo-status { margin-top: 18px; padding: 6px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; }
-        .jogo-status.ativo { color: #067647; background: #d9fbe9; }
-        .jogo-status.andamento { color: #7a5d00; background: #fff3bf; }
-        .logo-progresso { position: relative; width: 100%; max-width: 320px; height: 130px; }
-        .logo-progresso img { position: absolute; inset: 0; }
-        .logo-progresso .logo-escura { filter: grayscale(1) brightness(0.28); opacity: 0.72; }
-        .logo-progresso .logo-colorida { clip-path: inset(0 60% 0 0); }
-
-        .recursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card { background: linear-gradient(145deg,#101a24,#0b1119); border:1px solid #263746; border-radius: var(--borda-raio); padding: 30px; box-shadow: var(--sombra-suave); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
-        .card p { color:#9eb0bd; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 229, 255, 0.15); }
-        .card img { max-width: 100%; height: 250px; object-fit: contain; margin-bottom: 15px; }
-        .badge { background: #e2e8f0; color: #718096; font-size: 0.8rem; padding: 5px 10px; border-radius: 12px; font-weight: bold; position: absolute; top: 15px; right: 15px; }
-
-        .cta-final { text-align: center; padding: 80px 20px; }
-        .btn-principal { display: inline-block; background-color: var(--azul-ciano); color: #000; font-size: 1.2rem; font-weight: bold; padding: 18px 45px; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4); transition: all 0.3s ease; }
-        .btn-principal:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0, 229, 255, 0.6); }
-
-        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #8fa5b5; border-top:1px solid #172430; }
-
-        @media (max-width: 768px) { nav .container { align-items: flex-start; } nav .container > div:last-child { display: none; } .hero { min-height: 790px; background-position: 62% center; } .hero::before { background: linear-gradient(180deg, rgba(1,6,16,.88), rgba(1,7,17,.72) 50%, rgba(1,7,17,.94)); } .hero-grid { display: block; padding-top: 100px; } .hero-copy { position: relative; z-index: 5; padding: 45px 0 310px; } .hero h1 { font-size: clamp(2.8rem, 14vw, 4rem); } .hero-copy > p { font-size: .98rem; } .hero-dados { gap: 14px; flex-wrap: wrap; } .hero-visual { position: absolute; inset: auto 0 0; height: 420px; opacity: .68; } .hero-personagem { right: -22%; width: 470px; height: 430px; } .telemetria { display: none; } .manifesto { flex-direction: column; text-align: center; } .manifesto-texto blockquote { border-left: none; padding: 0; } .jogos-suportados { flex-direction: column; align-items: center; } .jogo-suportado { width: 100%; } }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GAROTA MACHINE — Projetada para todas as escolhas</title>
+<style>
+:root{--carbon:#171c22;--steel:#3b454d;--glass:rgba(18,28,37,.62);--cyan:#39d6ef;--magenta:#ec3eb6;--green:#69ef8c;--white:#f4f7f6;--amber:#f0aa35}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--carbon);color:var(--white);font:16px/1.55 "Segoe UI",sans-serif;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;z-index:-3;background:linear-gradient(125deg,#172635 0 17%,#26333d 17% 31%,#43243d 31% 39%,#1d2933 39% 66%,#183c38 66% 71%,#272f35 71%)}body:after{content:"";position:fixed;inset:0;z-index:-2;opacity:.7;background:linear-gradient(35deg,transparent 0 44%,rgba(58,214,239,.18) 44% 46%,transparent 46% 67%,rgba(236,62,182,.13) 67% 69%,transparent 69%),linear-gradient(145deg,transparent 0 62%,rgba(105,239,140,.09) 62% 64%,transparent 64%)}.nav{height:76px;padding:0 4vw;display:flex;align-items:center;justify-content:space-between;background:rgba(15,21,27,.78);border-bottom:1px solid rgba(137,165,181,.35);backdrop-filter:blur(16px);position:absolute;inset:0 0 auto;z-index:8}.nav img{width:235px;height:44px;object-fit:contain}.links{display:flex;align-items:center;gap:25px}.links a{color:#dce3e5;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:.11em}.hero{min-height:940px;position:relative;padding-top:76px}.fleet{position:absolute;z-index:0;left:0;right:0;top:76px;height:690px;background:url('conceitos/assets/frota-garota-machine.png') center top/cover no-repeat}.fleet:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--carbon) 0,rgba(23,28,34,.86) 9%,transparent 40%),linear-gradient(90deg,rgba(18,23,29,.33),transparent 25% 75%,rgba(18,23,29,.33))}.hero-copy{position:absolute;z-index:3;left:4vw;right:4vw;top:610px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:50px;align-items:end}.eyebrow{font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--green)}h1{font:900 clamp(53px,7vw,112px)/.8 Bahnschrift,"Arial Narrow",sans-serif;letter-spacing:-.06em;text-transform:uppercase;margin:20px 0 24px;text-shadow:0 8px 30px rgba(0,0,0,.48)}h1 em{font-style:normal;color:var(--cyan)}.promise{border-left:3px solid var(--magenta);padding-left:22px;color:#d7dee0;font-size:20px;max-width:520px}.actions{display:grid;gap:13px}.machine-btn{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:67px;padding:0 21px;color:white;text-decoration:none;text-transform:uppercase;font-weight:900;letter-spacing:.08em;font-size:12px;border:1px solid #82949e;background:linear-gradient(145deg,rgba(115,137,149,.48),rgba(19,29,37,.82));box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -5px 12px rgba(0,0,0,.28),0 12px 30px rgba(0,0,0,.28);backdrop-filter:blur(13px);clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);transition:.22s}.machine-btn:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}.machine-btn:hover{transform:translateY(-4px);border-color:var(--cyan);background:linear-gradient(145deg,rgba(57,214,239,.34),rgba(20,31,39,.9))}.machine-btn.buy:before{background:var(--green);box-shadow:0 0 14px var(--green)}.brands{margin:0 4vw;border:1px solid rgba(137,165,181,.35);display:grid;grid-template-columns:repeat(5,1fr);background:rgba(15,22,28,.62);backdrop-filter:blur(14px)}.brand{padding:20px;text-align:center;border-right:1px solid rgba(137,165,181,.3);font:800 14px Bahnschrift;letter-spacing:.12em}.brand:last-child{border:0}.brand small{display:block;color:#8fa0a8;font:10px "Segoe UI";margin-top:5px}.declaration{max-width:1250px;margin:90px auto;padding:0 32px;display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:center}.declaration img{width:100%;border:1px solid #64757e;box-shadow:24px 24px 0 rgba(236,62,182,.12),-18px -18px 0 rgba(57,214,239,.09)}.declaration h2{font:900 clamp(45px,6vw,82px)/.88 Bahnschrift;text-transform:uppercase;margin:15px 0}.declaration p{font-size:19px;color:#ccd5d8}.signals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}.signal{padding:17px;border:1px solid #566872;background:rgba(18,28,36,.55)}.signal b{display:block;color:var(--cyan)}.final{padding:95px 4vw;text-align:center;background:linear-gradient(90deg,rgba(57,214,239,.14),rgba(236,62,182,.16),rgba(105,239,140,.1));border-top:1px solid #566872}.final h2{font:900 clamp(48px,7vw,90px)/.85 Bahnschrift;text-transform:uppercase;margin:0 auto 30px;max-width:1000px}.final .machine-btn{max-width:390px;margin:auto}.back{position:fixed;right:18px;bottom:18px;z-index:10;background:#d6dde0;color:#182028;padding:10px 13px;text-decoration:none;font-weight:900;font-size:11px}@media(max-width:900px){.links{display:none}.hero{min-height:1020px}.fleet{height:520px;background-position:center top}.hero-copy{top:500px;grid-template-columns:1fr}.brands{grid-template-columns:1fr 1fr}.brand{border-bottom:1px solid #52626b}.declaration{grid-template-columns:1fr}.signals{grid-template-columns:1fr}}@media(max-width:560px){.fleet{height:430px;background-size:auto 430px}.hero-copy{top:420px}.hero{min-height:1070px}.promise{font-size:17px}.brands{grid-template-columns:1fr}}
+.nav{height:92px;gap:28px;background:rgba(11,16,21,.9);justify-content:center}
+.nav img{flex:0 0 auto}
+.links{width:min(1180px,92vw);justify-content:stretch;gap:8px}
+.links a{min-width:120px;padding:17px 18px;text-align:center;border:1px solid rgba(137,165,181,.42);background:linear-gradient(145deg,rgba(78,96,106,.42),rgba(18,27,34,.8));box-shadow:inset 0 1px 0 rgba(255,255,255,.18);clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px);transition:.2s}
+.links a,.links .soon{flex:1}
+.links .soon{min-width:120px;padding:17px 18px;text-align:center;color:#839099;text-transform:uppercase;letter-spacing:.11em;font-size:12px;border:1px solid rgba(137,165,181,.24);background:linear-gradient(145deg,rgba(52,62,69,.28),rgba(14,21,27,.66));box-shadow:inset 0 1px 0 rgba(255,255,255,.08);clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px);cursor:not-allowed;user-select:none}
+.links .soon:before{content:"◷";display:inline-block;margin-right:7px;color:var(--amber);font-size:14px}
+.links a:hover{color:#fff;border-color:var(--cyan);transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 20px rgba(57,214,239,.16)}
+.hero{min-height:auto;padding-top:792px}
+.fleet{top:92px;height:700px}
+.hero-copy{position:relative;inset:auto;margin:0 4vw;padding:48px 0 66px;grid-template-columns:minmax(0,1fr) 360px;gap:70px;align-items:start}
+.hero-copy h1{font-size:clamp(46px,5.4vw,82px);line-height:.88;margin:14px 0 20px}
+.promise{max-width:720px}
+.actions{padding-top:18px}
+.platform-status{margin:0 4vw 85px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.platform-card{position:relative;min-height:190px;padding:25px 30px;display:grid;grid-template-columns:minmax(180px,290px) 1fr;gap:28px;align-items:center;border:1px solid rgba(137,165,181,.38);background:linear-gradient(145deg,rgba(35,47,56,.76),rgba(14,21,27,.88));box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.platform-logo{position:relative;height:120px;display:flex;align-items:center;justify-content:center}
+.platform-logo img{max-width:100%;max-height:120px;object-fit:contain}
+.platform-card h3{margin:4px 0 6px;font:900 26px Bahnschrift;text-transform:uppercase}
+.platform-card p{margin:0;color:#aebcc2}
+.platform-percent{font:900 13px Bahnschrift;letter-spacing:.12em;color:var(--green)}
+.platform-card.development .platform-percent{color:var(--amber)}
+.platform-card.development .platform-logo:before{content:"";position:absolute;inset:0;background:url('logo-ats.png') center/contain no-repeat;opacity:.1;filter:grayscale(1) blur(1px)}
+.platform-card.development .platform-logo img{position:relative;z-index:1;mask-image:linear-gradient(90deg,#000 0 36%,rgba(0,0,0,.82) 42%,rgba(0,0,0,.32) 53%,transparent 68%);-webkit-mask-image:linear-gradient(90deg,#000 0 36%,rgba(0,0,0,.82) 42%,rgba(0,0,0,.32) 53%,transparent 68%)}
+.progress-track{height:4px;margin-top:17px;background:rgba(255,255,255,.1);overflow:hidden}
+.progress-track span{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--green),var(--cyan));box-shadow:0 0 12px var(--cyan)}
+.development .progress-track span{width:40%;background:linear-gradient(90deg,var(--amber),var(--magenta));box-shadow:0 0 12px var(--magenta)}
+.hero-brand-word{position:absolute;z-index:4;top:104px;left:50%;width:min(840px,58vw);height:auto;transform:translateX(-50%);filter:drop-shadow(0 10px 24px rgba(0,0,0,.9))}
+.hero-brand-mark{position:absolute;z-index:4;top:100px;left:2.5vw;width:min(410px,27vw);height:auto;filter:drop-shadow(0 16px 34px rgba(0,0,0,.84)) drop-shadow(0 0 22px rgba(57,214,239,.27))}
+.story-panel{max-width:1250px;margin:90px auto;padding:0 32px;display:grid;grid-template-columns:.82fr 1.18fr;gap:70px;align-items:center}
+.story-panel.reverse{grid-template-columns:1.15fr .85fr}
+.story-panel img{display:block;max-width:100%;margin:auto}
+.story-panel .promotional{height:720px;filter:drop-shadow(0 28px 34px rgba(0,0,0,.38))}
+.story-panel .cabin-shot{width:100%;border:1px solid #64757e;box-shadow:22px 22px 0 rgba(57,214,239,.1)}
+.story-panel h2{font:900 clamp(48px,6vw,86px)/.88 Bahnschrift;text-transform:uppercase;margin:14px 0 24px}
+.support-copy{font-size:18px;color:#bfcbd0;max-width:620px}
+.compatibility{position:relative;min-height:500px;padding:72px 7vw 55px;display:grid;grid-template-columns:1fr 430px;gap:55px;align-items:center;overflow:hidden;border-top:0;background:linear-gradient(180deg,rgba(10,16,22,.16) 0%,rgba(10,16,22,.72) 44%,rgba(8,12,17,.97) 100%);isolation:isolate}
+.compatibility:before{content:"";position:absolute;inset:-45px 0 42%;z-index:-1;background:linear-gradient(180deg,rgba(18,29,38,.05),rgba(18,25,33,.68));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.55) 46%,#000 100%)}
+.compatibility:after{content:"";position:absolute;inset:48% 0 0;z-index:-1;background:linear-gradient(100deg,rgba(8,14,20,.98),rgba(18,12,23,.98))}
+.compatibility h2{font:900 clamp(44px,6vw,84px)/.88 Bahnschrift;text-transform:uppercase;margin:12px 0}
+.compatibility img{height:530px;width:auto;max-width:100%;object-fit:contain;justify-self:center;filter:drop-shadow(0 0 26px rgba(57,214,239,.4))}
+.download-cta{isolation:isolate;min-height:82px;margin-top:30px;padding:0 27px;border:2px solid #d5e7ee;color:#fff;background:linear-gradient(180deg,#ffbd38 0%,#ec7d16 46%,#9e340d 100%);box-shadow:inset 0 2px 0 rgba(255,255,255,.7),inset 0 -8px 16px rgba(87,15,0,.42),0 0 0 4px rgba(13,25,33,.95),0 0 0 6px rgba(53,213,239,.78),0 18px 32px rgba(0,0,0,.55),0 0 30px rgba(241,138,22,.28);text-shadow:0 2px 0 rgba(88,21,0,.75);font-size:15px;clip-path:polygon(16px 0,calc(100% - 16px) 0,100% 16px,100% calc(100% - 16px),calc(100% - 16px) 100%,16px 100%,0 calc(100% - 16px),0 16px)}
+.download-cta:before{width:15px;height:15px;background:#72f4ff;box-shadow:0 0 8px #fff,0 0 20px var(--cyan)}
+.download-cta b{display:grid;place-items:center;width:39px;height:39px;border-radius:50%;color:#151b20;background:linear-gradient(180deg,#f5fbfd,#7fc8d7);box-shadow:inset 0 2px 2px #fff,0 3px 8px rgba(0,0,0,.48)}
+.download-cta:hover{transform:translateY(-5px) scale(1.018);border-color:#fff;background:linear-gradient(180deg,#ffd86a 0%,#ff941f 45%,#c5480d 100%);box-shadow:inset 0 2px 0 #fff,inset 0 -8px 16px rgba(87,15,0,.38),0 0 0 4px rgba(13,25,33,.98),0 0 0 7px rgba(53,213,239,.96),0 24px 40px rgba(0,0,0,.62),0 0 42px rgba(241,138,22,.5)}
+.download-cta:active{transform:translateY(2px) scale(.995);box-shadow:inset 0 7px 16px rgba(80,15,0,.5),0 0 0 4px rgba(13,25,33,.98),0 0 0 6px rgba(53,213,239,.8),0 8px 12px rgba(0,0,0,.48)}
+@media(max-width:1100px){.links a{min-width:auto;padding:15px 11px;font-size:10px}.hero-copy{grid-template-columns:1fr 320px;gap:35px}.hero-brand-word{width:64vw}.hero-brand-mark{width:30vw}}
+@media(max-width:900px){.nav{height:76px}.links{display:flex;width:96vw;overflow-x:auto}.links a{white-space:nowrap;min-width:145px}.hero{padding-top:596px;min-height:auto}.fleet{top:76px;height:520px}.hero-brand-word{top:88px;width:72vw}.hero-brand-mark{top:96px;width:34vw;left:1vw}.hero-copy{top:auto;grid-template-columns:1fr;padding:38px 0 56px}.actions{max-width:460px}.brands{display:none}.platform-status{grid-template-columns:1fr}.story-panel,.story-panel.reverse{grid-template-columns:1fr;gap:30px}.story-panel .promotional{height:580px}.compatibility{grid-template-columns:1fr;text-align:center;padding-top:60px}.compatibility img{height:450px}}
+@media(max-width:620px){.platform-card{grid-template-columns:1fr;text-align:center}.platform-logo{height:100px}}
+@media(max-width:560px){.hero{padding-top:506px}.fleet{height:430px}.hero-copy{top:auto}.hero-copy h1{font-size:45px}}
+</style>
 </head>
 <body>
 
-    <nav>
-        <div class="container">
-            <div class="marca">
-                <img class="marca-sinal" src="garota-machine-mark.png" alt="">
-                <span class="marca-texto"><img src="garota-machine-wordmark.png" alt="GAROTA MACHINE"><small>A INTELIGÊNCIA VIVA DO SEU CAMINHÃO</small></span>
-            </div>
-            <div>
-                <a href="index.html">Início</a>
-                <a href="vendas.html">Planos</a>
-                <a href="documentario.html">Documentário</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="container hero-grid">
-            <div class="hero-copy">
-                <span class="hero-eyebrow">INTELIGÊNCIA VIVA NA ESTRADA</span>
-                <h1>Ela vive a <span>cabine</span> com você.</h1>
-                <p>Sua assistente inteligente acompanha o caminhão, entende a viagem e transforma cada quilômetro em uma experiência mais humana.</p>
-                <div class="hero-acoes">
-                    <a class="selo-gratis" href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest">Baixe a versão mais recente</a>
-                    <a class="hero-link" href="vendas.html">Conhecer os planos →</a>
-                </div>
-                <div class="hero-dados" aria-label="Destaques do produto">
-                    <div class="hero-dado"><strong>Voz natural</strong><span>Conversa em tempo real</span></div>
-                    <div class="hero-dado"><strong>Telemetria</strong><span>Conectada ao caminhão</span></div>
-                    <div class="hero-dado"><strong>ETS2</strong><span>Suporte ativo</span></div>
-                </div>
-            </div>
-            <div class="hero-visual" aria-hidden="true">
-                <img class="hero-personagem" src="Garota-Holograma-Transparente-v1.png" alt="">
-                <div class="telemetria"><small>SISTEMA CONECTADO</small><strong>GAROTA ONLINE</strong><span>Cabine acompanhada em tempo real</span></div>
-            </div>
-        </div>
-    </header>
-
-    <section class="container">
-        <div class="manifesto">
-            <div class="manifesto-texto">
-                <h2>Uma Carta Aberta 📜</h2>
-                <blockquote>
-                    <p>"Olá, motorista. Precisamos de você."</p>
-                    <p>"A GAROTA MACHINE não é um navegador. Ela é a inteligência viva do seu caminhão, falando com você enquanto vocês constroem histórias na estrada."</p>
-                    <p>"Ela escuta, interpreta a máquina, reage à viagem e transforma a cabine em companhia de verdade."</p>
-                </blockquote>
-            </div>
-            <div class="manifesto-img">
-                <img src="Garota-Original-Fisica-Matriz-Corrigida.png" alt="Personagem da GAROTA MACHINE">
-            </div>
-        </div>
-    </section>
-
-    <section class="container suporte-jogos" aria-labelledby="titulo-suporte">
-        <h2 id="titulo-suporte">Suporte a:</h2>
-        <p>Integração desenvolvida especialmente para os simuladores da SCS Software.</p>
-        <div class="jogos-suportados">
-            <article class="jogo-suportado">
-                <img src="logo-ets2.png" alt="Euro Truck Simulator 2">
-                <span class="jogo-status ativo">SUPORTE ATIVO</span>
-            </article>
-            <article class="jogo-suportado">
-                <div class="logo-progresso" aria-label="American Truck Simulator, suporte em desenvolvimento">
-                    <img class="logo-escura" src="logo-ats.png" alt="">
-                    <img class="logo-colorida" src="logo-ats.png" alt="American Truck Simulator">
-                </div>
-                <span class="jogo-status andamento">40% EM DESENVOLVIMENTO</span>
-            </article>
-        </div>
-    </section>
-
-    <section class="container">
-        <h2 style="text-align: center;">O Pacote Completo (Sem Módulos) 🚛</h2>
-        <div class="recursos-grid">
-            <div class="card">
-                <img src="Garota-Casual-Corrigida.png" alt="Voz Natural">
-                <h3>Companhia de Verdade 🗣️</h3>
-                <p>Seu caminhão agora tem vida. Ela conhece sua rota, carga e fluidos. Conversa natural com sotaques brasileiros (baiano, gaúcho, carioca, paulista, mineiro).</p>
-            </div>
-            <div class="card">
-                <h3>Sincronia Total (SDK SCS) ⚙️</h3>
-                <p>Controle faróis, motor, limpadores, buzina, pisca-alerta e muito mais com a sua voz. Confirmação instantânea e real dentro do jogo.</p>
-            </div>
-            <div class="card">
-                <img src="Garota-Referencia-Facial-Holograma.png" alt="Holograma">
-                <h3>Holograma Reativo 🛜</h3>
-                <p>Uma projeção elegante na cabine cujas cores mudam conforme a sua atenção, o estresse ou perigos na estrada confirmados pela telemetria.</p>
-            </div>
-            <div class="card">
-                <span class="badge">⏳ EM BREVE</span>
-                <h3>Garota GOLIVE 📡</h3>
-                <p>Lê o chat e apoios do YouTube/Twitch. A sua audiência interage com a cabine, mas você nunca perde o controle da direção.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-final">
-        <div class="container">
-            <h2>Pronto para assumir a direção?</h2>
-            <br>
-            <a href="vendas.html" class="btn-principal">Ver Planos e Garantir Acesso ➔</a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="selo-seguranca" style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
-                <img src="mercadopago-logo.svg" alt="Mercado Pago" width="130">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#00a650" xmlns="http://www.w3.org/2000/svg"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm3 8H9V6a3 3 0 0 1 6 0v3z"/></svg>
-                <span>Pagamentos processados pelo <strong>Mercado Pago</strong> — <strong>Compra Protegida</strong></span>
-            </div>
-            Criado por Rodrigo ASGomes (Steam: GorinBRS) | GAROTA MACHINE &copy; 2026
-        </div>
-    </footer>
-
+<nav class="nav">
+<div class="links">
+<a href="#inicio">Início</a>
+<a href="vendas.html">Planos</a>
+<span class="soon" aria-disabled="true" title="Em breve">Quem somos</span>
+<span class="soon" aria-disabled="true" title="Em breve">Projeto</span>
+<span class="soon" aria-disabled="true" title="Em breve">Roteiro de viagem</span>
+</div>
+</nav>
+<header class="hero" id="inicio">
+<div class="fleet" aria-label="MAN, Renault, Scania, Volvo e Mercedes com a GAROTA MACHINE ao centro">
+</div>
+<img class="hero-brand-mark" src="garota-machine-mark.png" alt="Brasão GAROTA MACHINE">
+<img class="hero-brand-word" src="garota-machine-wordmark.png" alt="GAROTA MACHINE">
+<div class="hero-copy">
+<div>
+<span class="eyebrow">Uma inteligência. Todas as suas escolhas.</span>
+<h1>A GAROTA MACHINE está presente em todas as cabines da sua <em>marca preferida.</em></h1>
+</div>
+<div class="actions">
+<a class="machine-btn buy" href="../vendas.html">
+<span>Eu quero isso na minha cabine</span>
+<b>→</b>
+</a>
+<a class="machine-btn" href="#presenca">
+<span>Veja a máquina funcionando</span>
+<b>↓</b>
+</a>
+</div>
+</div>
+</header>
+<section class="platform-status" aria-label="Compatibilidade com os simuladores">
+<article class="platform-card">
+<div class="platform-logo"><img src="logo-ets2.png" alt="Euro Truck Simulator 2"></div>
+<div>
+<span class="platform-percent">100% COMPATÍVEL</span>
+<h3>Euro Truck Simulator 2</h3>
+<p>Experiência GAROTA MACHINE disponível nas cabines-base oficiais.</p>
+<div class="progress-track"><span></span></div>
+</div>
+</article>
+<article class="platform-card development">
+<div class="platform-logo"><img src="logo-ats.png" alt="American Truck Simulator"></div>
+<div>
+<span class="platform-percent">40% — EM DESENVOLVIMENTO</span>
+<h3>American Truck Simulator</h3>
+<p>A compatibilidade está sendo construída e ampliada progressivamente.</p>
+<div class="progress-track"><span></span></div>
+</div>
+</article>
+</section>
+<section class="story-panel" id="presenca">
+<img class="promotional" src="conceitos/assets/garota-machine-promocional-b.png" alt="GAROTA MACHINE em pose promocional">
+<div>
+<span class="eyebrow">Uma nova presença na estrada</span>
+<h2>Sua viagem nunca mais será de um ponto A ao ponto B.</h2>
+<p class="support-copy">A cabine deixa de ser apenas o lugar de dirigir e passa a ser o espaço onde cada viagem ganha voz, companhia e personalidade.</p>
+<div class="signals">
+<div class="signal">
+<b>VOZ</b>Conversa durante a viagem</div>
+<div class="signal">
+<b>AÇÃO</b>Comandos reais no caminhão</div>
+<div class="signal">
+<b>PRESENÇA</b>Holograma nativo multimarcas</div>
+</div>
+</div>
+</section>
+<section class="story-panel reverse" id="roteiro">
+<div>
+<span class="eyebrow">Dentro da cabine. Durante a viagem.</span>
+<h2>ELA vai mudar a sua forma de viajar.</h2>
+<p class="support-copy">Veja a presença da GAROTA MACHINE dentro do jogo e prepare sua cabine para uma experiência diferente.</p>
+<a class="machine-btn buy download-cta" href="../vendas.html">
+<span>Baixar GAROTA MACHINE</span>
+<b>→</b>
+</a>
+</div>
+<img class="cabin-shot" src="conceitos/assets/cabine-holograma.jpg" alt="Cabine do caminhão com o holograma da GAROTA MACHINE visível">
+</section>
+<section class="compatibility">
+<div>
+<span class="eyebrow">Compatibilidade oficial</span>
+<h2>Projetado pra todas as cabines-base do ETS2 e ATS.</h2>
+</div>
+<img src="conceitos/assets/holograma-aprovado-v3.png" alt="Miniatura da GAROTA MACHINE holográfica aprovada">
+</section>
 </body>
 </html>
+
+

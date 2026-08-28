@@ -1,131 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planos — GAROTA MACHINE</title>
-    <style>
-        /* Mesmas variáveis do index */
-        :root { --bg-claro: #05090f; --texto-principal: #f2f7fa; --verde-menta: #21e6b2; --azul-ciano: #00d9ff; --dourado-selo: #ffb21c; --branco: #0d141d; --sombra-suave: 0 16px 46px rgba(0,0,0,.34); --borda-raio: 20px; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-claro); color: var(--texto-principal); line-height: 1.6; margin: 0; padding: 0; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        nav { background: #070d14; padding: 15px 0; border-bottom:1px solid #263746; }
-        nav .container { display: flex; justify-content: space-between; align-items: center; }
-        nav a { text-decoration: none; color: var(--texto-principal); font-weight: bold; margin-left: 20px; }
-        nav a:hover { color: var(--azul-ciano); }
-
-        .hero-vendas { text-align: center; padding: 60px 20px; }
-        .selo-urgencia { display: inline-block; background-color: #ff4757; color: white; padding: 10px 20px; border-radius: 30px; font-weight: bold; letter-spacing: 1px; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-
-        .planos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; }
-        .plano-card { background: linear-gradient(145deg,#101a24,#0b1119); border-radius: var(--borda-raio); padding: 40px 30px; text-align: center; box-shadow: var(--sombra-suave); position: relative; transition: transform 0.3s ease; border: 2px solid #263746; }
-        .plano-card:hover { transform: translateY(-10px); border-color: var(--azul-ciano); }
-        .plano-destaque { border-color: var(--dourado-selo); box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2); }
-        .badge-destaque { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--dourado-selo); color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
-        
-        .preco-antigo { text-decoration: line-through; color: #a0aec0; font-size: 1.2rem; }
-        .preco-atual { font-size: 3rem; font-weight: bold; color: #fff; margin: 10px 0; }
-        .preco-atual span { font-size: 1.2rem; }
-        
-        .lista-recursos { list-style: none; padding: 0; margin: 30px 0; text-align: left; }
-        .lista-recursos li { margin-bottom: 15px; padding-left: 30px; position: relative; }
-        .lista-recursos li::before { content: "✓"; color: var(--azul-ciano); font-weight: bold; position: absolute; left: 0; font-size: 1.2rem; }
-
-        .btn-comprar { display: block; width: 100%; background: var(--texto-principal); color: var(--branco); padding: 15px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: all 0.3s; }
-        .plano-destaque .btn-comprar { background: var(--azul-ciano); color: #000; }
-        .btn-comprar:hover { opacity: 0.9; transform: scale(1.02); }
-
-        .pagamentos { text-align: center; margin-top: 20px; color: #8fa5b5; font-size: 0.9rem; }
-        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #8fa5b5; border-top:1px solid #172430; }
-        .wordmark { width:250px;max-width:46vw;height:46px;object-fit:contain;object-position:left center;display:block }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Planos — GAROTA MACHINE</title>
+<style>
+:root{--carbon:#080d12;--steel:#8da0aa;--cyan:#45e5ff;--green:#6aff9d;--amber:#ffad27;--magenta:#ed3db6;--white:#f6fbff;--muted:#aebbc3}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--white);font:16px/1.45 "Segoe UI",sans-serif;background:#090f15;overflow-x:hidden}.nav{height:92px;padding:0 4vw;display:flex;align-items:center;justify-content:center;background:rgba(7,12,17,.9);border-bottom:1px solid rgba(149,177,191,.32);backdrop-filter:blur(17px);position:relative;z-index:20}.links{width:min(1180px,92vw);display:flex;gap:8px}.links a{flex:1;padding:17px 13px;color:#dce7eb;text-decoration:none;text-align:center;text-transform:uppercase;font-size:11px;font-weight:800;letter-spacing:.11em;border:1px solid rgba(137,165,181,.42);background:linear-gradient(145deg,rgba(78,96,106,.42),rgba(18,27,34,.82));box-shadow:inset 0 1px 0 rgba(255,255,255,.18);clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px);transition:.2s}.links a:hover,.links a.active{border-color:var(--cyan);color:#fff;background:linear-gradient(145deg,rgba(37,112,129,.56),rgba(18,27,34,.9));box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 24px rgba(69,229,255,.18)}.plans-stage{position:relative;isolation:isolate;min-height:calc(100vh - 92px);overflow:hidden;padding:50px 4vw 58px}.plans-stage:before{content:"";position:absolute;z-index:-3;inset:0;background:url('conceitos/assets/posto-combustivel-planos.png') center/cover no-repeat;opacity:.34;filter:saturate(.84) contrast(1.08)}.plans-stage:after{content:"";position:absolute;z-index:-2;inset:0;background:linear-gradient(90deg,rgba(5,10,15,.96) 0%,rgba(6,12,18,.87) 53%,rgba(7,13,19,.53) 76%,rgba(6,11,17,.78) 100%),linear-gradient(0deg,rgba(7,12,17,.94),transparent 55%,rgba(6,11,16,.62));backdrop-filter:blur(1.2px)}.glow{position:absolute;z-index:-1;width:700px;height:700px;border-radius:50%;left:30%;top:5%;background:radial-gradient(circle,rgba(39,183,214,.15),rgba(237,61,182,.055) 45%,transparent 70%);filter:blur(18px)}.brand{display:grid;grid-template-columns:110px minmax(280px,560px);align-items:center;gap:18px;margin-bottom:20px}.brand-mark{width:108px;filter:drop-shadow(0 10px 25px #000) drop-shadow(0 0 15px rgba(69,229,255,.28))}.brand-word{width:min(520px,100%);filter:drop-shadow(0 9px 22px #000)}.content{position:relative;z-index:2;width:min(1380px,92vw);margin:auto;padding-right:min(29vw,410px)}.eyebrow{color:var(--green);font:900 11px Bahnschrift,"Arial Narrow";letter-spacing:.2em;text-transform:uppercase}.headline{max-width:880px;margin:8px 0 8px;font:900 clamp(43px,5vw,76px)/.86 Bahnschrift,"Arial Narrow",sans-serif;letter-spacing:-.045em;text-transform:uppercase}.headline em{font-style:normal;color:var(--cyan)}.lead{max-width:760px;margin:0 0 25px;color:#c9d4d9;font-size:18px}.trial{display:flex;align-items:center;gap:14px;width:max-content;max-width:100%;margin-bottom:25px;padding:12px 16px;border:1px solid rgba(106,255,157,.55);background:linear-gradient(90deg,rgba(21,79,62,.56),rgba(11,26,29,.62));box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 28px rgba(106,255,157,.08);text-transform:uppercase;font-size:12px;font-weight:800;letter-spacing:.07em}.trial b{color:var(--green)}.plans{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:14px;align-items:stretch}.plan{position:relative;display:flex;flex-direction:column;min-height:430px;padding:28px 24px 23px;overflow:hidden;border:1px solid rgba(157,185,198,.48);background:linear-gradient(150deg,rgba(51,67,78,.78),rgba(10,18,25,.9) 52%,rgba(5,11,16,.94));box-shadow:inset 0 1px 0 rgba(255,255,255,.23),inset 0 -13px 24px rgba(0,0,0,.22),0 22px 52px rgba(0,0,0,.38);backdrop-filter:blur(18px);clip-path:polygon(15px 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,0 100%,0 15px);transition:.22s}.plan:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,var(--cyan),transparent 72%)}.plan:hover{transform:translateY(-7px);border-color:var(--cyan);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 28px 65px rgba(0,0,0,.48),0 0 26px rgba(69,229,255,.12)}.plan.featured{z-index:2;border-color:rgba(255,173,39,.86);background:linear-gradient(150deg,rgba(83,58,25,.92),rgba(17,24,29,.93) 47%,rgba(7,13,18,.96));box-shadow:inset 0 1px 0 rgba(255,239,200,.42),0 25px 65px rgba(0,0,0,.5),0 0 32px rgba(255,173,39,.14)}.plan.featured:before{background:linear-gradient(90deg,var(--amber),var(--magenta),transparent)}.tag{height:22px;color:#a9bac2;font:900 11px Bahnschrift;text-transform:uppercase;letter-spacing:.14em}.featured .tag{color:var(--amber)}.plan h2{margin:8px 0 12px;font:900 30px Bahnschrift;text-transform:uppercase}.old{color:#89989f;text-decoration:line-through;font-weight:700}.price{margin:1px 0 6px;font:900 43px/1 Bahnschrift;color:#fff;letter-spacing:-.04em}.price small{font:600 12px "Segoe UI";color:#aebbc3;letter-spacing:0}.saving{margin-bottom:15px;color:var(--green);font-size:12px;font-weight:900;text-transform:uppercase}.featured .saving{color:var(--amber)}ul{list-style:none;padding:0;margin:5px 0 22px;color:#c6d0d4;font-size:13px}li{position:relative;padding:7px 0 7px 19px;border-bottom:1px solid rgba(255,255,255,.07)}li:before{content:"";position:absolute;left:1px;top:13px;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 9px var(--cyan)}.buy{margin-top:auto;min-height:56px;display:flex;align-items:center;justify-content:center;color:#071117;text-decoration:none;text-transform:uppercase;font-weight:1000;font-size:12px;letter-spacing:.08em;background:linear-gradient(180deg,#7df1ff,#27aec9);border:1px solid #d4fbff;box-shadow:inset 0 2px 0 rgba(255,255,255,.7),inset 0 -6px 12px rgba(0,67,91,.32),0 8px 20px rgba(0,0,0,.35);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}.featured .buy{background:linear-gradient(180deg,#ffd66b,#ef8617);border-color:#fff0bd;color:#261403}.download{display:block;margin-top:12px;color:#9db1ba;text-align:center;text-decoration:none;font-size:11px}.download:hover{color:#fff}.presenter{position:absolute;z-index:1;right:max(2vw,10px);bottom:-4px;height:min(82vh,790px);max-height:calc(100% - 42px);width:auto;filter:drop-shadow(-15px 25px 35px rgba(0,0,0,.68)) drop-shadow(0 0 11px rgba(69,229,255,.25));pointer-events:none}.capacity{position:absolute;z-index:3;right:3.6vw;top:38px;width:220px;padding:13px 15px;text-align:center;color:#fbe8b7;font:900 11px Bahnschrift;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(255,173,39,.65);background:rgba(45,30,13,.7);backdrop-filter:blur(10px)}.back{position:fixed;right:18px;bottom:18px;z-index:30;background:#d6dde0;color:#182028;padding:10px 13px;text-decoration:none;font-weight:900;font-size:11px}@media(max-width:1220px){.content{padding-right:300px}.presenter{right:-55px;opacity:.84}.plans{grid-template-columns:1fr}.plan{min-height:auto}.capacity{display:none}}@media(max-width:900px){.nav{height:76px}.links{width:96vw;overflow-x:auto}.links a{white-space:nowrap;min-width:145px}.plans-stage{min-height:auto;padding-top:32px}.presenter{position:relative;display:block;right:auto;bottom:auto;height:570px;max-width:92vw;margin:-45px auto -45px}.content{padding-right:0}.brand{grid-template-columns:80px 1fr}.brand-mark{width:80px}.headline{font-size:50px}.plans{grid-template-columns:1fr}.plan{min-height:410px}}@media(max-width:560px){.plans-stage{padding-inline:18px}.content{width:100%}.brand{grid-template-columns:60px 1fr}.brand-mark{width:60px}.headline{font-size:39px}.lead{font-size:16px}.trial{width:100%;font-size:10px}.presenter{height:470px}.plan{padding:25px 20px}}
+/* Layout aprovado: apresentadora à esquerda e planos em sequência à direita */
+.plans-stage{padding:32px 2.2vw 38px}
+.plans-stage:before{opacity:.92;filter:saturate(.92) contrast(1.04);background-position:center}
+.plans-stage:after{background:linear-gradient(90deg,rgba(4,9,14,.06) 0%,rgba(4,9,14,.13) 27%,rgba(4,9,14,.43) 39%,rgba(4,9,14,.28) 100%),linear-gradient(0deg,rgba(4,8,12,.34),transparent 48%,rgba(3,8,13,.16));backdrop-filter:blur(.35px)}
+.glow{left:42%;width:900px;background:radial-gradient(circle,rgba(39,183,214,.12),rgba(237,61,182,.035) 48%,transparent 72%)}
+.content{width:100%;padding-left:30vw;padding-right:1vw}
+.brand{grid-template-columns:68px minmax(230px,390px);gap:12px;margin-bottom:8px}.brand-mark{width:68px}.brand-word{width:min(390px,100%)}
+.headline{max-width:800px;margin:5px 0;font-size:clamp(35px,3.8vw,61px)}.lead{max-width:770px;margin-bottom:13px;font-size:15px;text-shadow:0 2px 9px #000}.trial{margin-bottom:15px;padding:9px 14px}
+.plans{grid-template-columns:repeat(3,minmax(205px,1fr));gap:13px;align-items:center}
+.plan{min-height:470px;padding:27px 22px 22px;background:linear-gradient(150deg,rgba(28,42,53,.74),rgba(5,15,25,.9) 53%,rgba(3,9,15,.94));border-width:2px}
+.plan:first-child{border-color:rgba(176,126,64,.78)}
+.plan.featured{min-height:520px;border-color:rgba(239,225,26,.9);background:linear-gradient(150deg,rgba(64,55,23,.78),rgba(5,15,25,.92) 50%,rgba(3,9,15,.96))}
+.plan:last-child{border-color:rgba(190,202,211,.78)}
+.presenter{left:7vw;right:auto;bottom:-3px;height:min(83vh,790px);max-height:calc(100% - 25px);filter:drop-shadow(-8px 25px 32px rgba(0,0,0,.72)) drop-shadow(0 0 11px rgba(69,229,255,.23))}
+.capacity{right:3vw;top:23px}
+@media(max-width:1220px){.content{padding-left:25vw;padding-right:0}.presenter{left:-60px;right:auto;opacity:.86}.plans{grid-template-columns:repeat(3,minmax(185px,1fr))}.plan{padding-inline:17px}.capacity{display:none}}
+@media(max-width:900px){.plans-stage{padding:30px 18px}.content{padding:0}.presenter{position:relative;display:block;left:auto;right:auto;bottom:auto;height:560px;max-width:92vw;margin:-25px auto -45px}.plans{grid-template-columns:1fr}.plan,.plan.featured{min-height:410px}.brand{grid-template-columns:75px 1fr}.brand-mark{width:75px}}
+.links .soon{flex:1;padding:17px 13px;color:#839099;text-align:center;text-transform:uppercase;font-size:11px;font-weight:800;letter-spacing:.11em;border:1px solid rgba(137,165,181,.24);background:linear-gradient(145deg,rgba(52,62,69,.28),rgba(14,21,27,.66));box-shadow:inset 0 1px 0 rgba(255,255,255,.08);clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px);cursor:not-allowed;user-select:none}.links .soon:before{content:"◷";display:inline-block;margin-right:7px;color:var(--amber);font-size:14px}
+</style>
 </head>
 <body>
-
-    <nav>
-        <div class="container">
-            <img class="wordmark" src="garota-machine-wordmark.png" alt="GAROTA MACHINE">
-            <div>
-                <a href="index.html">Início</a>
-                <a href="vendas.html">Planos</a>
-                <a href="documentario.html">Documentário</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero-vendas container">
-        <div class="selo-urgencia">ACESSO ANTECIPADO — APENAS 50 VAGAS</div>
-        <h1 style="font-size: 2.5rem; margin-top: 20px;">O Produto é Único. A Escolha do Tempo é Sua.</h1>
-        <p style="font-size: 1.2rem;">Todos os recursos. Todos os sotaques. Sem módulos escondidos.<br>Comece qualquer plano hoje com <strong>7 DIAS GRÁTIS</strong> (sem cartão, sem compromisso).</p>
-    </header>
-
-    <section class="container">
-        <div class="planos-grid">
-            <!-- Plano Mensal -->
-            <div class="plano-card">
-                <h3>Mensal</h3>
-                <div class="preco-antigo">R$ 35</div>
-                <div class="preco-atual">R$ 25<span>/30 dias</span></div>
-                <p>Economia de 28%</p>
-                <ul class="lista-recursos">
-                    <li>Controle por voz no ETS2/ATS</li>
-                    <li>Telemetria e Holograma Reativo</li>
-                    <li>Todos os sotaques brasileiros</li>
-                    <li>Instalador único e atualizações</li>
-                </ul>
-                <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=1137559932-561ba1d4-4f70-41fb-97e4-9600ecb32fa2" class="btn-comprar">COMPRAR — 30 DIAS</a>
-                <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest" style="display:block; margin-top:15px; font-size:0.85rem; color:#8fa5b5;">Baixe a versão mais recente</a>
-            </div>
-            <div class="plano-card plano-destaque">
-                <div class="badge-destaque">MELHOR ESCOLHA (-70%)</div>
-                <h3>Anual</h3>
-                <div class="preco-antigo">R$ 420</div>
-                <div class="preco-atual">R$ 126<span>/365 dias</span></div>
-                <p>Garota Rodada: Badges de Fundador</p>
-                <ul class="lista-recursos">
-                    <li>Controle por voz no ETS2/ATS</li>
-                    <li>Telemetria e Holograma Reativo</li>
-                    <li>Todos os sotaques brasileiros</li>
-                    <li>Instalador único e atualizações</li>
-                </ul>
-                <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=1137559932-2a5458bb-e547-41dc-8c48-74166855ebb9" class="btn-comprar">COMPRAR — 365 DIAS</a>
-                <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest" style="display:block; margin-top:15px; font-size:0.85rem; color:#8fa5b5;">Baixe a versão mais recente</a>
-            </div>
-
-            <!-- Plano Trimestral -->
-            <div class="plano-card">
-                <h3>Trimestral</h3>
-                <div class="preco-antigo">R$ 150</div>
-                <div class="preco-atual">R$ 70<span>/90 dias</span></div>
-                <p>Economia de 53%</p>
-                <ul class="lista-recursos">
-                    <li>Controle por voz no ETS2/ATS</li>
-                    <li>Telemetria e Holograma Reativo</li>
-                    <li>Todos os sotaques brasileiros</li>
-                    <li>Instalador único e atualizações</li>
-                </ul>
-                <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=1137559932-9fe2f301-8574-4725-a0ec-0648255b14bd" class="btn-comprar">COMPRAR — 90 DIAS</a>
-                <a href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest" style="display:block; margin-top:15px; font-size:0.85rem; color:#8fa5b5;">Baixe a versão mais recente</a>
-            </div>
-        </div>
-
-        <div class="pagamentos">
-            Pagamento 100% seguro via: <strong>Mercado Pago • PayPal • Pix</strong>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="selo-seguranca" style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
-                <img src="mercadopago-logo.svg" alt="Mercado Pago" width="130">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#00a650" xmlns="http://www.w3.org/2000/svg"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm3 8H9V6a3 3 0 0 1 6 0v3z"/></svg>
-                <span>Pagamentos processados pelo <strong>Mercado Pago</strong> — <strong>Compra Protegida</strong></span>
-            </div>
-            Transparência: Você usa sua própria chave Gemini. Sem internet, ela permanece silenciosa.<br>
-            Criado por Rodrigo ASGomes (Steam: GorinBRS) | GAROTA MACHINE &copy; 2026
-        </div>
-    </footer>
+<nav class="nav" aria-label="Navegação principal">
+  <div class="links">
+    <a href="index.html">Início</a>
+    <a class="active" href="vendas.html">Planos</a>
+    <span class="soon" aria-disabled="true" title="Em breve">Quem somos</span>
+    <span class="soon" aria-disabled="true" title="Em breve">Projeto</span>
+    <span class="soon" aria-disabled="true" title="Em breve">Roteiro de viagem</span>
+  </div>
+</nav>
+<main class="plans-stage">
+  <div class="glow"></div>
+  <div class="capacity">Acesso antecipado · apenas 50 vagas</div>
+  <section class="content">
+    <div class="brand">
+      <img class="brand-mark" src="garota-machine-mark.png" alt="Brasão GAROTA MACHINE">
+      <img class="brand-word" src="garota-machine-wordmark.png" alt="GAROTA MACHINE">
+    </div>
+    <span class="eyebrow">Você escolhe o tempo. A experiência vem completa.</span>
+    <h1 class="headline">Escolha até onde essa <em>viagem vai.</em></h1>
+    <p class="lead">Nenhum recurso escondido e nenhuma cabine pela metade. Muda apenas o tempo de estrada ao lado da GAROTA MACHINE.</p>
+    <div class="trial"><b>7 dias grátis</b><span>sem cartão · sem compromisso</span></div>
+    <div class="plans">
+      <article class="plan">
+        <div class="tag">Entrada rápida</div>
+        <h2>Mensal</h2>
+        <div class="old">R$ 35</div>
+        <div class="price">R$ 25 <small>/ 30 dias</small></div>
+        <div class="saving">Economia de 28%</div>
+        <ul>
+          <li>Controle por voz no ETS2/ATS</li><li>Telemetria e holograma reativo</li><li>Todos os sotaques brasileiros</li><li>Instalador único e atualizações</li>
+        </ul>
+        <a class="buy" href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=1137559932-561ba1d4-4f70-41fb-97e4-9600ecb32fa2">Começar por 30 dias</a>
+        <a class="download" href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest">Baixar versão mais recente</a>
+      </article>
+      <article class="plan featured">
+        <div class="tag">Melhor escolha · 70% de economia</div>
+        <h2>Anual</h2>
+        <div class="old">R$ 420</div>
+        <div class="price">R$ 126 <small>/ 365 dias</small></div>
+        <div class="saving">Badges de fundador</div>
+        <ul>
+          <li>Controle por voz no ETS2/ATS</li><li>Telemetria e holograma reativo</li><li>Todos os sotaques brasileiros</li><li>Instalador único e atualizações</li>
+        </ul>
+        <a class="buy" href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=1137559932-2a5458bb-e547-41dc-8c48-74166855ebb9">Garantir 365 dias</a>
+        <a class="download" href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest">Baixar versão mais recente</a>
+      </article>
+      <article class="plan">
+        <div class="tag">Mais estrada</div>
+        <h2>Trimestral</h2>
+        <div class="old">R$ 150</div>
+        <div class="price">R$ 70 <small>/ 90 dias</small></div>
+        <div class="saving">Economia de 53%</div>
+        <ul>
+          <li>Controle por voz no ETS2/ATS</li><li>Telemetria e holograma reativo</li><li>Todos os sotaques brasileiros</li><li>Instalador único e atualizações</li>
+        </ul>
+        <a class="buy" href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=1137559932-9fe2f301-8574-4725-a0ec-0648255b14bd">Seguir por 90 dias</a>
+        <a class="download" href="https://github.com/goorinbrs/GarotaUpdates-/releases/latest">Baixar versão mais recente</a>
+      </article>
+    </div>
+  </section>
+  <img class="presenter" src="conceitos/assets/garota-machine-promocional-b.png" alt="GAROTA MACHINE apresentando os planos">
+</main>
 
 </body>
 </html>
+
+
