@@ -27,12 +27,9 @@
 .platform-card h3{margin:4px 0 6px;font:900 26px Bahnschrift;text-transform:uppercase}
 .platform-card p{margin:0;color:#aebcc2}
 .platform-percent{font:900 13px Bahnschrift;letter-spacing:.12em;color:var(--green)}
-.platform-card.development .platform-percent{color:var(--amber)}
-.platform-card.development .platform-logo:before{content:"";position:absolute;inset:0;background:url('logo-ats.png') center/contain no-repeat;opacity:.1;filter:grayscale(1) blur(1px)}
-.platform-card.development .platform-logo img{position:relative;z-index:1;mask-image:linear-gradient(90deg,#000 0 36%,rgba(0,0,0,.82) 42%,rgba(0,0,0,.32) 53%,transparent 68%);-webkit-mask-image:linear-gradient(90deg,#000 0 36%,rgba(0,0,0,.82) 42%,rgba(0,0,0,.32) 53%,transparent 68%)}
+.platform-base{display:inline-flex;align-items:center;margin:9px 0 12px;padding:6px 10px;border:1px solid var(--cyan);background:rgba(69,229,255,.12);color:var(--cyan);font:900 16px Bahnschrift,"Arial Narrow",sans-serif;letter-spacing:.06em;white-space:nowrap}
 .progress-track{height:4px;margin-top:17px;background:rgba(255,255,255,.1);overflow:hidden}
 .progress-track span{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--green),var(--cyan));box-shadow:0 0 12px var(--cyan)}
-.development .progress-track span{width:40%;background:linear-gradient(90deg,var(--amber),var(--magenta));box-shadow:0 0 12px var(--magenta)}
 .hero-brand-word{position:absolute;z-index:4;top:104px;left:50%;width:min(840px,58vw);height:auto;transform:translateX(-50%);filter:drop-shadow(0 10px 24px rgba(0,0,0,.9))}
 .hero-brand-mark{position:absolute;z-index:4;top:100px;left:2.5vw;width:min(410px,27vw);height:auto;filter:drop-shadow(0 16px 34px rgba(0,0,0,.84)) drop-shadow(0 0 22px rgba(57,214,239,.27))}
 .story-panel{max-width:1250px;margin:90px auto;padding:0 32px;display:grid;grid-template-columns:.82fr 1.18fr;gap:70px;align-items:center}
@@ -96,17 +93,19 @@
 <div class="platform-logo"><img src="logo-ets2.png" alt="Euro Truck Simulator 2"></div>
 <div>
 <span class="platform-percent">100% COMPATÍVEL</span>
+<br><span class="platform-base">BASE 1.61</span>
 <h3>Euro Truck Simulator 2</h3>
 <p>Experiência GAROTA MACHINE disponível nas cabines-base oficiais.</p>
 <div class="progress-track"><span></span></div>
 </div>
 </article>
-<article class="platform-card development">
+<article class="platform-card">
 <div class="platform-logo"><img src="logo-ats.png" alt="American Truck Simulator"></div>
 <div>
-<span class="platform-percent">40% — EM DESENVOLVIMENTO</span>
+<span class="platform-percent">100% COMPATÍVEL</span>
+<br><span class="platform-base">BASE 1.61</span>
 <h3>American Truck Simulator</h3>
-<p>A compatibilidade está sendo construída e ampliada progressivamente.</p>
+<p>Experiência GAROTA MACHINE para as cabines-base oficiais.</p>
 <div class="progress-track"><span></span></div>
 </div>
 </article>
